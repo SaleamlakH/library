@@ -1,6 +1,8 @@
 'use strict'
+
 let myLibrary = [];
 
+// book object constructor
 function Book(title, author, numPages, uuid) {
     if (!new.target) {
         throw Error('You must use new operator to call as a constructor');
@@ -11,6 +13,11 @@ function Book(title, author, numPages, uuid) {
     this.uuid = uuid;
 }
 
+Book.prototype.remove = function() {
+    let bookIndex = myLibrary.indexOf(this);
+    myLibrary.splice(bookIndex, 1);
+};
+
 function addBookToLibrary(title, author, numPages) {
     const uuid = crypto.randomUUID();
     const newBook = new Book(title, author, numPages, uuid);
@@ -18,4 +25,3 @@ function addBookToLibrary(title, author, numPages) {
     myLibrary.push(newBook);
 }
 
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295);
