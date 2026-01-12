@@ -10,6 +10,7 @@ function Book(title, author, numPages, uuid) {
     this.title = title;
     this.author = author;
     this.pages = numPages;
+    this.read = false;
     this.uuid = uuid;
 }
 
@@ -18,10 +19,13 @@ Book.prototype.remove = function() {
     myLibrary.splice(bookIndex, 1);
 };
 
+Book.prototype.setReadStatus = function() {
+    this.read = this.read ? false : true;
+}
+
 function addBookToLibrary(title, author, numPages) {
     const uuid = crypto.randomUUID();
     const newBook = new Book(title, author, numPages, uuid);
     
     myLibrary.push(newBook);
 }
-
