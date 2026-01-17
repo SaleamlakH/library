@@ -20,6 +20,10 @@ body {
     padding: 0;
     letter-spacing: 1px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .header-nav {
@@ -118,10 +122,12 @@ main {
     background-color: var(--primary-bg-color);
     padding: 2em;
 
+    flex: 1;
     position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, 220px);
     justify-content: center;
+    align-items: flex-start;
     gap: 25px;
 }
 
