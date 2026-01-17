@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font:inherit;
+}
+
+:root {
+    /* background colors */
+    --primary-bg-color: hsl(210 0 95);
+    --buttons-bg-color: hsl(210 0 80);
+
+    /* hover color */
+    --hover-color: hsl(210 1 70);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.header-nav {
+    padding: 0.3em 1em;
+    background-color: var(--primary-bg-color);
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-collections-logo {
+    display: flex;
+}
+
+.book-logo-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.book-logo-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 0.8;
+    margin: auto;
+}
+
+.github-repo-link {
+    text-decoration: none;
+    color: hsl(0 0 0);
+    font-weight: 600;
+    background-color: var(--buttons-bg-color);
+    border-radius: 10px;
+    padding: 0.4em 0.8em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em
+}
+
+.github-repo-link:hover {
+    background-color: var(--hover-color);
+}
+
+.filter-buttons {
+    margin: 0.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.filter-button {
+    flex: 1;
+    max-width: 85px;
+    padding: 0.6em;
+    margin: 0;
+    background-color: var(--buttons-bg-color);
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-button.all {
+    border-radius: 10px 0 0 10px;
+}
+
+.filter-button.unread {
+    border-radius: 0 10px 10px 0;
+}
+
+.filter-button:hover::after,
+.filter-button:active::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding: 0.5em;
+    background-color: var(--hover-color);
+    border-bottom: 3px solid green;
+}
+
+.filter-button.all:hover::after {
+    content: 'All';
+}
+
+.filter-button.read:hover::after {
+    content: 'Read';
+}
+
+.filter-button.unread:hover::after {
+    content: 'Unread';
+}
