@@ -121,6 +121,8 @@ main {
     position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, 220px);
+    justify-content: center;
+    gap: 25px;
 }
 
 .books-list {
