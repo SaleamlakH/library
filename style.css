@@ -223,3 +223,10 @@ main {
 .action-book-status {
     margin-right: auto;
 }
+
+
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: hsl(210 0 70);
+}
