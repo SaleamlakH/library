@@ -123,6 +123,10 @@ main {
     grid-template-columns: repeat(auto-fit, 220px);
 }
 
+.books-list {
+    display: contents;
+}
+
 .book-card {
     background-color: var(--cards-bg-color);
     border-radius: 10px;
