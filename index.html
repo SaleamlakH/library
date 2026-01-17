@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Library</title>
+    </head>
+    <body>
+        <header>
+            <div class="book-collections-logo">
+                <svg id="book-logo-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="-3 -3 30 30" stroke="currentColor" stroke-width="0"><path d="M 4 0 L 4 24 L 20 24 L 20 0 L 4 0" fill="hsl(0 70 40)"/><path d="M 6 0 L 6 24 L 3 24 L 3 0" fill="hsl(0 100 15)"/><path d="M 9 2 L 9 5 L 18 5 L 18 2 L 4 2" fill="hsl(0 10 90)"/><path d="M 9 5 L 9 5.25 L 18 5.25 L 18 5 L 4 5" fill="hsl(0 100 15)"/><path d="M 9 7 L 9 8 L 18 8 L 18 7 L 4 7" fill="hsl(0 10 90)"/><path d="M 9 8 L 9 8.25 L 18 8.25 L 18 8 L 4 8" fill="hsl(0 100 15)"/><path d="M 3 8 L 3 24 L 20 24 L 20 23.75 L 3 23.75" fill="hsl(0 10 30)"/></svg>
+                <span class="book-logo-text">Book<br>Collections</span>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-button all">All</button>
+                <button class="filter-button read">Read</button>
+                <button class="filter-button Unread">Unread</button>
+            </div>
+            
+            <a class="github-repo-link" href="#">Github</a>
+        </header>
+        
+        <main>
+            <div class="books-list">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <div class="book-cover title"></div>
+                        <div class="book-cover author"></div>
+                        <div class="book-cover pages"></div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="action-book-status">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="book-status-icon"><path d="M 4 2 L 4 23 L 20 23 L 20 2 L 4 2"></path><path d="M 5 2 L 5 23"></path>
+                                <path class="check-mark" d="M 8 13 L 11 16 L 17 9" stroke-linecap="square" stroke-linejoin="miter"></path>
+                            </svg>
+                        </button>
+
+                        <button class="action-edit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                        </button>
+                        <button class="action-delete">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="button add-book">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            
+            <dialog>
+                <form>
+                    <label for="book-title">Title</label>
+                    <input type="text" name="book_title" id="book-title">
+
+                    <label for="book-author">Author</label>
+                    <input type="text" name="book_author" id="book-author">
+
+                    <label for="book-pages">Pages</label>
+                    <input type="number" name="book_pages" id="book-pages">
+
+                    <button id="cancel-button">Cancel</button>
+                    <button id="submit-button" type="submit">Submit</button>
+                </form>
+                
+                <aside class="form-live-preview"></aside>
+            </dialog>            
+        </main>
+
+        <footer>
+            copyright &copy; Saleamlak
+        </footer>
+    </body>
+</html>
