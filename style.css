@@ -9,6 +9,7 @@
     /* background colors */
     --primary-bg-color: hsl(210 0 95);
     --buttons-bg-color: hsl(210 0 80);
+    --cards-bg-color: hsl(210 0 100);
 
     /* hover color */
     --hover-color: hsl(210 1 70);
@@ -111,4 +112,108 @@ body {
 
 .filter-button.unread:hover::after {
     content: 'Unread';
+}
+
+main {
+    background-color: var(--primary-bg-color);
+    padding: 2em;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 220px);
+}
+
+.book-card {
+    background-color: var(--cards-bg-color);
+    border-radius: 10px;
+    padding: 1.5em 1.5em 1em;
+    border: 1px solid hsl(0 0 95);
+    box-shadow: 0px 0px 15px hsl(0 0 70);
+}
+
+.book-cover {
+    color: hsl(0 0 100);
+    font-family: cursive, Georgia, 'Times New Roman', Times, serif;
+    padding: 0.5em 0.5em 1em;
+    margin-bottom: 2em;
+    height: 230px;
+    background-color: hsl(234 48 38);
+    border-left: 9px solid hsl(234 48 14);
+    box-shadow: 0px 8px 10px 1px hsl(0 0 45);
+    overflow-wrap: break-word;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-cover .title {
+    padding: 5px;
+    font-size: 36px;
+}
+
+.book-cover .author {
+    margin-top: auto;
+    font-size: 1.25em;
+    text-align: center;
+}
+
+.book-cover .pages {
+    text-align: center;
+    padding: 0.5em;
+}
+
+.actions {
+    display: flex;
+    gap: 5px;
+}
+
+.add-book {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 1em;
+    bottom: 1em;;
+    border: none;
+    border-radius: 50%;
+    color: hsl(0 0 100);
+    background-color: hsl( 0 100 25);
+    box-shadow: 0px 0px 10px hsl(0 0 0);
+}
+
+.add-book svg {
+    position: relative;
+    top: 1px;
+    left: 1px;;
+}
+
+.actions button {
+    padding: 0.25em 0.5em;
+    background-color: var(--buttons-bg-color);
+    border: none;
+    border-radius: 10px;
+}
+
+.actions button:hover {
+    background-color: var(--hover-color);
+}
+
+.actions svg {
+    position: relative;
+    top: 1.5px;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.actions .action-book-status {
+    color: transparent;
+}
+
+.actions .action-book-status:hover {
+    color: white;
+    background-color: hsl(120 100 25);
+}
+
+.action-book-status {
+    margin-right: auto;
 }
