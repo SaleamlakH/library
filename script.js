@@ -4,12 +4,14 @@ let myLibrary = [];
 const addBtn = document.querySelector('.add-book');
 const dialog = document.querySelector('dialog');
 const form = document.querySelector('form');
+const cancelBtn = document.querySelector('#cancel-button');
 const inputs = document.querySelectorAll('form input');
 const livePreview = document.querySelector('.form-live-preview');
 const [bookTitle, bookAuthor, bookPages] = livePreview.querySelectorAll('.book-cover > div');
 
 addBtn.addEventListener('click', () => dialog.showModal());
 form.addEventListener('submit', addBookToLibrary);
+cancelBtn.addEventListener('click', () => dialog.close());
 inputs.forEach(input => {
     input.addEventListener('input', updateTemplateReview);
 });
