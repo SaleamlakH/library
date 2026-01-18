@@ -3,11 +3,13 @@
 let myLibrary = [];
 const addBtn = document.querySelector('.add-book');
 const dialog = document.querySelector('dialog');
+const form = document.querySelector('form');
 const inputs = document.querySelectorAll('form input');
 const livePreview = document.querySelector('.form-live-preview');
 const [bookTitle, bookAuthor, bookPages] = livePreview.querySelectorAll('.book-cover > div');
 
 addBtn.addEventListener('click', () => dialog.showModal());
+form.addEventListener('submit', addBookToLibrary);
 inputs.forEach(input => {
     input.addEventListener('input', updateTemplateReview);
 });
@@ -33,11 +35,19 @@ Book.prototype.setReadStatus = function() {
     this.read = this.read ? false : true;
 }
 
-function addBookToLibrary(title, author, numPages) {
+function addBookToLibrary(event) {
     const uuid = crypto.randomUUID();
-    const newBook = new Book(title, author, numPages, uuid);
-    
+    const formData = Array.from(new FormData(form));
+
+    // convert two dimensional array into a key and value object;
+    const data = formData.reduce((book, [key, value]) => {
+        book[key] = value;
+        return book;
+    }, {});
+
+    const newBook = new Book(data.book_title, data.book_author, data.book_pages, uuid);
     myLibrary.push(newBook);
+    event.preventDefault();
 }
 
 function updateTemplateReview(event) {
