@@ -48,6 +48,7 @@ function addBookToLibrary(event) {
     const newBook = new Book(data.book_title, data.book_author, data.book_pages, uuid);
     myLibrary.push(newBook);
     event.preventDefault();
+    dialog.close();
 }
 
 function updateTemplateReview(event) {
