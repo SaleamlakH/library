@@ -11,7 +11,10 @@ const [bookTitle, bookAuthor, bookPages] = livePreview.querySelectorAll('.book-c
 
 addBtn.addEventListener('click', () => dialog.showModal());
 form.addEventListener('submit', addBookToLibrary);
-cancelBtn.addEventListener('click', () => dialog.close());
+cancelBtn.addEventListener('click', () => {
+    resetDialog();
+    dialog.close()
+});
 inputs.forEach(input => {
     input.addEventListener('input', updateTemplateReview);
 });
@@ -49,7 +52,9 @@ function addBookToLibrary(event) {
 
     const newBook = new Book(data.book_title, data.book_author, data.book_pages, uuid);
     myLibrary.push(newBook);
+    
     event.preventDefault();
+    resetDialog();
     dialog.close();
 }
 
@@ -67,4 +72,11 @@ function updateTemplateReview(event) {
         case 'book-pages':
             bookPages.textContent = `${value} pages`;
     }
+}
+
+function resetDialog() {
+    form.reset();
+    bookTitle.textContent = '';
+    bookAuthor.textContent = '';
+    bookPages.textContent = '';
 }
