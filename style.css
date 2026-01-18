@@ -262,6 +262,10 @@ dialog:open {
    display: flex;
 }
 
+dialog::backdrop {
+    background: hsl(0 0 1 / 85%);
+}
+
 form {
     font-size: 1rem;
     font-weight: 600;
