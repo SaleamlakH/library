@@ -217,6 +217,10 @@ main {
     border-radius: 50%;
 }
 
+.add-book:hover {
+    background-color: hsl(0 100 10);
+}
+
 .actions button {
     padding: 0.25em 0.5em;
     background-color: var(--buttons-bg-color);
