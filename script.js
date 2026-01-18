@@ -3,8 +3,14 @@
 let myLibrary = [];
 const addBtn = document.querySelector('.add-book');
 const dialog = document.querySelector('dialog');
+const inputs = document.querySelectorAll('form input');
+const livePreview = document.querySelector('.form-live-preview');
+const [bookTitle, bookAuthor, bookPages] = livePreview.querySelectorAll('.book-cover > div');
 
 addBtn.addEventListener('click', () => dialog.showModal());
+inputs.forEach(input => {
+    input.addEventListener('input', updateTemplateReview);
+});
 
 // book object constructor
 function Book(title, author, numPages, uuid) {
@@ -32,4 +38,21 @@ function addBookToLibrary(title, author, numPages) {
     const newBook = new Book(title, author, numPages, uuid);
     
     myLibrary.push(newBook);
+}
+
+function updateTemplateReview(event) {
+    const targetInput = event.target.getAttribute('id');
+    const value = event.target.value;
+
+    console.log(targetInput, value);
+    switch (targetInput) {
+        case 'book-title':
+            bookTitle.textContent = value;
+            break;
+        case 'book-author':
+            bookAuthor.textContent = value;
+            break;
+        case 'book-pages':
+            bookPages.textContent = `${value} pages`;
+    }
 }
