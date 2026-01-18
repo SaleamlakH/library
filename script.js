@@ -1,12 +1,15 @@
 'use strict'
 
 let myLibrary = [];
+const booksList = document.querySelector('.books-list');
+const bookCardTemplate = document.querySelector('.book-card.template');
 const addBtn = document.querySelector('.add-book');
 const dialog = document.querySelector('dialog');
 const form = document.querySelector('form');
 const cancelBtn = document.querySelector('#cancel-button');
 const inputs = document.querySelectorAll('form input');
 const livePreview = document.querySelector('.form-live-preview');
+const bookCover = livePreview.querySelector('.book-cover');
 const [bookTitle, bookAuthor, bookPages] = livePreview.querySelectorAll('.book-cover > div');
 
 addBtn.addEventListener('click', () => dialog.showModal());
@@ -61,8 +64,26 @@ function addBookToLibrary(event) {
     myLibrary.push(newBook);
     
     event.preventDefault();
+    showBook(newBook);
     resetDialog();
     dialog.close();
+}
+
+function showBook(book) {
+    const cloneTemplate = bookCardTemplate.cloneNode(true);
+    const actionBtnsContainer = cloneTemplate.querySelector('.actions');
+    
+    // Populating the cover before clone
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = book.author;
+    bookPages.textContent = book.pages;
+    
+    const cloneBookCover = bookCover.cloneNode(true);
+    
+    cloneTemplate.classList.remove('template');
+    cloneTemplate.dataset.id = book.bookId;
+    cloneTemplate.insertBefore(cloneBookCover, actionBtnsContainer);
+    booksList.insertBefore(cloneTemplate, bookCardTemplate);
 }
 
 function updateTemplateReview(event) {
