@@ -20,15 +20,23 @@ inputs.forEach(input => {
 });
 
 // book object constructor
-function Book(title, author, numPages, uuid) {
+function Book(title, author, numPages) {
     if (!new.target) {
         throw Error('You must use new operator to call as a constructor');
     }
+
+    const uuid = crypto.randomUUID();
+    
     this.title = title;
     this.author = author;
     this.pages = numPages;
     this.read = false;
-    this.uuid = uuid;
+
+    Object.defineProperty(this, 'bookId', {
+        get() {
+            return uuid;
+        }
+    });
 }
 
 Book.prototype.remove = function() {
@@ -41,7 +49,6 @@ Book.prototype.setReadStatus = function() {
 }
 
 function addBookToLibrary(event) {
-    const uuid = crypto.randomUUID();
     const formData = Array.from(new FormData(form));
 
     // convert two dimensional array into a key and value object;
@@ -50,7 +57,7 @@ function addBookToLibrary(event) {
         return book;
     }, {});
 
-    const newBook = new Book(data.book_title, data.book_author, data.book_pages, uuid);
+    const newBook = new Book(data.book_title, data.book_author, data.book_pages);
     myLibrary.push(newBook);
     
     event.preventDefault();
