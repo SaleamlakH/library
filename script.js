@@ -1,6 +1,10 @@
 'use strict'
 
 let myLibrary = [];
+const addBtn = document.querySelector('.add-book');
+const dialog = document.querySelector('dialog');
+
+addBtn.addEventListener('click', () => dialog.showModal());
 
 // book object constructor
 function Book(title, author, numPages, uuid) {
