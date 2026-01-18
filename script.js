@@ -44,7 +44,6 @@ function updateTemplateReview(event) {
     const targetInput = event.target.getAttribute('id');
     const value = event.target.value;
 
-    console.log(targetInput, value);
     switch (targetInput) {
         case 'book-title':
             bookTitle.textContent = value;
