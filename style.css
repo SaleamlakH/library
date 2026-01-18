@@ -68,9 +68,14 @@ body {
 }
 
 .filter-buttons {
-    margin: 0.5em;
+    margin: 0.5em 0.53em 0;
+    padding: 0.5em;
     display: flex;
     justify-content: center;
+    background-color: var(--primary-bg-color);
+    border: 1px solid var(--buttons-bg-color);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
 }
 
 .filter-button {
@@ -121,6 +126,10 @@ body {
 main {
     background-color: var(--primary-bg-color);
     padding: 2em;
+    margin: 0 0.5em 0.5em;
+    border: 1px solid var(--buttons-bg-color);
+    border-top: none;
+    border-radius: 0 0 20px 20px;
 
     flex: 1;
     position: relative;
