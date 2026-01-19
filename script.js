@@ -108,3 +108,12 @@ function resetDialog() {
     bookAuthor.textContent = '';
     bookPages.textContent = '';
 }
+
+// add sample books to make UI and feature development easier
+(function createSampleBooks() {
+    const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', '295');
+    const book2 = new Book('Atomic Habits', 'James Clear', '295');
+
+    myLibrary.push(book1, book2);
+    myLibrary.forEach(book => showBook(book));
+})();
