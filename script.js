@@ -76,7 +76,7 @@ function showBook(book) {
     // Populating the cover before clone
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
-    bookPages.textContent = book.pages;
+    bookPages.textContent = `${book.pages} pages`;
     
     const cloneBookCover = bookCover.cloneNode(true);
     
