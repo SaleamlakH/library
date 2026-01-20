@@ -241,15 +241,12 @@ main {
 
 .actions .action-book-status {
     color: transparent;
+    margin-right: auto;
 }
 
 .actions .action-book-status:hover {
     color: white;
     background-color: hsl(120 100 25);
-}
-
-.action-book-status {
-    margin-right: auto;
 }
 
 dialog:open {
