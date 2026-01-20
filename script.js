@@ -67,6 +67,7 @@ ActionButton.prototype.handleClick = function() {
     switch (this.action) {
         case 'read':
             this.book.setReadStatus();
+            this.button.classList.toggle('read');
             break;
         case 'delete':
             // the remove methods are not identical
