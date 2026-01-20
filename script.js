@@ -76,7 +76,7 @@ ActionButton.prototype.handleClick = function() {
             this.book.remove();
             break;
         case 'edit':
-            dialog.showModal();
+            this.openDialogForEditing();
     }
 }
 
@@ -86,6 +86,22 @@ ActionButton.prototype.attachClickEventListener = function() {
             this.handleClick();
         });
     }
+}
+
+ActionButton.prototype.openDialogForEditing = function () {
+    const {title, author, pages} = this.book;
+
+    // fill template with book content
+    bookTitle.textContent = title;
+    bookAuthor.textContent = author;
+    bookPages.textContent = pages;
+
+    // fill the form elements with the respective book value
+    form.querySelector('#book-title').value = title;
+    form.querySelector('#book-author').value = author;
+    form.querySelector('#book-pages').value = pages;
+
+    dialog.showModal();
 }
 
 function addBookToLibrary(event) {
@@ -173,4 +189,5 @@ function resetDialog() {
         let clonedCard = showBook(book);
         setupBookCardActions(book, clonedCard);
     });
+    resetDialog();
 })();
