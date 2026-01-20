@@ -105,15 +105,8 @@ ActionButton.prototype.openDialogForEditing = function () {
 }
 
 function addBookToLibrary(event) {
-    const formData = Array.from(new FormData(form));
-
-    // convert two dimensional array into a key and value object;
-    const data = formData.reduce((book, [key, value]) => {
-        book[key] = value;
-        return book;
-    }, {});
-
-    const newBook = new Book(data.book_title, data.book_author, data.book_pages);
+    const {title, author, pages} = getInputValue();
+    const newBook = new Book(title, author, pages);
     const clonedCard = showBook(newBook);
     
     setupBookCardActions(newBook, clonedCard);
@@ -121,6 +114,18 @@ function addBookToLibrary(event) {
     event.preventDefault();
     resetDialog();
     dialog.close();
+}
+
+function getInputValue() {
+    const formData = Array.from(new FormData(form));
+
+    // convert two dimensional array into a key and value object;
+    const data = formData.reduce((book, [key, value]) => {
+        book[key.split('_')[1]] = value;
+        return book;
+    }, {});
+
+    return data;
 }
 
 function setupBookCardActions(book, bookCard) {
@@ -132,7 +137,7 @@ function setupBookCardActions(book, bookCard) {
         
         action = (action === 'status') ? 'read' : action;
         actionBtn = new ActionButton(button, book, action);
-        if (action === 'delete') actionBtn.bookCard = bookCard;
+        actionBtn.bookCard = bookCard;
         actionBtn.attachClickEventListener();
     };
 };
