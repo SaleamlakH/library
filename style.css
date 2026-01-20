@@ -245,13 +245,13 @@ main {
 }
 
 .actions .action-book-status:hover {
-    color: white;
-    background-color: hsl(120 100 25);
+    color: hsl(0 0 100);
+    background-color: hsl(0 100 25);
 }
 
 .actions .action-book-status.read {
     color: hsl(0 0 100);
-    background-color: hsl(120 100 25);
+    background-color: hsl(0 100 25);
 }
 
 .actions .action-book-status.read:hover {
