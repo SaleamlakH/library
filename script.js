@@ -97,13 +97,28 @@ function addBookToLibrary(event) {
     }, {});
 
     const newBook = new Book(data.book_title, data.book_author, data.book_pages);
-    myLibrary.push(newBook);
+    const clonedCard = showBook(newBook);
     
+    setupBookCardActions(newBook, clonedCard);
+    myLibrary.push(newBook);
     event.preventDefault();
-    showBook(newBook);
     resetDialog();
     dialog.close();
 }
+
+function setupBookCardActions(book, bookCard) {
+    const actionBtns = bookCard.querySelectorAll('.actions button');
+    
+    for (const button of actionBtns) {
+        let action = button.classList.value.split('-').at(-1);
+        let actionBtn;
+        
+        action = (action === 'status') ? 'read' : action;
+        actionBtn = new ActionButton(button, book, action);
+        if (action === 'delete') actionBtn.bookCard = bookCard;
+        actionBtn.attachClickEventListener();
+    };
+};
 
 function showBook(book) {
     const cloneTemplate = bookCardTemplate.cloneNode(true);
@@ -120,6 +135,8 @@ function showBook(book) {
     cloneTemplate.dataset.id = book.bookId;
     cloneTemplate.insertBefore(cloneBookCover, actionBtnsContainer);
     booksList.insertBefore(cloneTemplate, bookCardTemplate);
+
+    return cloneTemplate;
 }
 
 function updateTemplateReview(event) {
@@ -151,5 +168,8 @@ function resetDialog() {
     const book2 = new Book('Atomic Habits', 'James Clear', '295');
 
     myLibrary.push(book1, book2);
-    myLibrary.forEach(book => showBook(book));
+    myLibrary.forEach(book => {
+        let clonedCard = showBook(book);
+        setupBookCardActions(book, clonedCard);
+    });
 })();
