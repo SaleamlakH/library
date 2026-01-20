@@ -132,7 +132,6 @@ main {
     border-radius: 0 0 20px 20px;
 
     flex: 1;
-    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, 220px);
     justify-content: center;
@@ -194,10 +193,10 @@ main {
 }
 
 .add-book {
-    position: absolute;
+    position: fixed;
     right: 1em;
     padding: 0.2em 0.5em 0.1em 1em;
-    bottom: 1em;
+    bottom: 2.5em;
     border: none;
     border-radius: 10px;
     color: hsl(0 0 100);
