@@ -249,6 +249,16 @@ main {
     background-color: hsl(120 100 25);
 }
 
+.actions .action-book-status.read {
+    color: hsl(0 0 100);
+    background-color: hsl(120 100 25);
+}
+
+.actions .action-book-status.read:hover {
+    color: transparent;
+    background-color: var(--buttons-bg-color);
+}
+
 dialog:open {
    border: 1px solid hsl(0 0 80);
    border-radius: 10px;
