@@ -51,6 +51,42 @@ Book.prototype.setReadStatus = function() {
     this.read = this.read ? false : true;
 }
 
+function ActionButton(button, book, action) {    
+    this.button = button;
+    this.action = action;
+    this.bookCard;
+
+    Object.defineProperty(this, 'book', {
+        get() {
+            return book;
+        }
+    });
+}
+
+ActionButton.prototype.handleClick = function() {
+    switch (this.action) {
+        case 'read':
+            this.book.setReadStatus();
+            break;
+        case 'delete':
+            // the remove methods are not identical
+            // the first is built in node method which removes
+            this.bookCard.remove();
+            this.book.remove();
+            break;
+        case 'edit':
+            dialog.showModal();
+    }
+}
+
+ActionButton.prototype.attachClickEventListener = function() {
+    if (this.button) {
+        this.button.addEventListener('click', () => {
+            this.handleClick();
+        });
+    }
+}
+
 function addBookToLibrary(event) {
     const formData = Array.from(new FormData(form));
 
