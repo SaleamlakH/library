@@ -1,6 +1,13 @@
 'use strict'
 
 let myLibrary = [];
+
+// Store the bound submit handler so it can be removed on cancel.
+// Event listener attachment/removal requires the same function reference.
+// `bind()` returns a new function that can be used as a handler without
+// modify the original.
+let boundSaveChanges = null; 
+
 const booksList = document.querySelector('.books-list');
 const bookCardTemplate = document.querySelector('.book-card.template');
 const addBtn = document.querySelector('.add-book');
@@ -15,6 +22,7 @@ const [bookTitle, bookAuthor, bookPages] = livePreview.querySelectorAll('.book-c
 addBtn.addEventListener('click', () => dialog.showModal());
 form.addEventListener('submit', addBookToLibrary);
 cancelBtn.addEventListener('click', () => {
+    form.removeEventListener('submit', boundSaveChanges);
     resetDialog();
     dialog.close()
 });
@@ -101,13 +109,15 @@ function openDialogForEditing(book, bookCard) {
 
     // Save changes instead of adding it as a new book
     form.removeEventListener('submit', addBookToLibrary);
-    form.addEventListener('submit', (e) => {
-        saveChanges(e, book, bookCard)
-    }, {once: true});
+
+    // Create and store a new bound handler instance for this dialog session
+    boundSaveChanges = saveChanges.bind({book, bookCard});
+    form.addEventListener('submit', boundSaveChanges, {once: true});
     dialog.showModal();
 }
 
-function saveChanges(e, book, bookCard) {
+function saveChanges(e) {
+    const {book, bookCard} = this;
     const {title, author, pages} = getInputValue();
 
     book.title = title;
