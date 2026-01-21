@@ -76,7 +76,7 @@ ActionButton.prototype.handleClick = function() {
             this.book.remove();
             break;
         case 'edit':
-            this.openDialogForEditing();
+            openDialogForEditing(this.book, this.bookCard);
     }
 }
 
@@ -88,8 +88,8 @@ ActionButton.prototype.attachClickEventListener = function() {
     }
 }
 
-ActionButton.prototype.openDialogForEditing = function () {
-    const {title, author, pages} = this.book;
+function openDialogForEditing(book, bookCard) {
+    const {title, author, pages} = book;
 
     // fill template with book content
     bookTitle.textContent = title;
@@ -104,7 +104,7 @@ ActionButton.prototype.openDialogForEditing = function () {
     // Save changes instead of adding it as a new book
     form.removeEventListener('submit', addBookToLibrary);
     form.addEventListener('submit', (e) => {
-        saveChanges(e, this.book, this.bookCard)
+        saveChanges(e, book, bookCard)
     }, {once: true});
     dialog.showModal();
 }
