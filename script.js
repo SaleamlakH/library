@@ -47,6 +47,16 @@ function Book(title, author, numPages) {
     this.pages = numPages;
     this.read = false;
 
+    Object.defineProperty(this, 'bookCard', {
+        get() {
+            return this.card;
+        },
+
+        set(card) {
+            this.card = card;
+        }
+    });
+
     Object.defineProperty(this, 'bookId', {
         get() {
             return uuid;
@@ -68,7 +78,6 @@ Book.prototype.setReadStatus = function() {
 function ActionButton(button, book, action) {    
     this.button = button;
     this.action = action;
-    this.bookCard;
 
     Object.defineProperty(this, 'book', {
         get() {
@@ -86,11 +95,11 @@ ActionButton.prototype.handleClick = function() {
         case 'delete':
             // the remove methods are not identical
             // the first is built in node method which removes
-            this.bookCard.remove();
+            this.book.bookCard.remove();
             this.book.remove();
             break;
         case 'edit':
-            openDialogForEditing(this.book, this.bookCard);
+            openDialogForEditing(this.book, this.book.bookCard);
     }
 }
 
@@ -173,12 +182,11 @@ function setupBookCardActions(book, bookCard) {
     
     for (const button of actionBtns) {
         let action = button.classList.value.split('-').at(-1);
-        let actionBtn;
-        
         action = (action === 'status') ? 'read' : action;
-        actionBtn = new ActionButton(button, book, action);
-        actionBtn.bookCard = bookCard;
+        
+        let actionBtn = new ActionButton(button, book, action);
         actionBtn.attachClickEventListener();
+        book.bookCard = bookCard;
     };
 };
 
