@@ -19,7 +19,11 @@ const livePreview = document.querySelector('.form-live-preview');
 const [bookCover]= livePreview.children;
 const [bookTitle, bookAuthor, bookPages] = bookCover.children;
 
-addBtn.addEventListener('click', () => dialog.showModal());
+addBtn.addEventListener('click', () => {
+    const [hue, saturation] = styleBookCover(bookCover);
+    stylePreviewContainer(hue, saturation);
+    dialog.showModal()
+});
 form.addEventListener('submit', addBookToLibrary);
 cancelBtn.addEventListener('click', () => {
     form.removeEventListener('submit', boundSaveChanges);
@@ -224,6 +228,21 @@ function resetDialog() {
     writeBookCoverContents('', '', '');
 }
 
+// --- functions for book cover styling ---
+function styleBookCover(bookCover) {
+    const hue = Math.floor(Math.random() * 361);
+    const saturation = Math.floor(Math.random() * 60);
+    
+    bookCover.style.backgroundColor = `hsl(${hue} ${saturation} 38)`;
+    bookCover.style.borderColor = `hsl(${hue} ${saturation} 24)`;
+
+    return [hue, saturation];
+}
+
+function stylePreviewContainer(hue, saturation) {
+    livePreview.style.backgroundColor = `hsl(${hue} ${saturation} 85`;
+}
+
 // add sample books to make UI and feature development easier
 (function createSampleBooks() {
     const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', '295');
@@ -232,6 +251,9 @@ function resetDialog() {
     myLibrary.push(book1, book2);
     myLibrary.forEach(book => {
         let clonedCard = showBook(book);
+        let bookCover = clonedCard.children[0];
+
+        styleBookCover(bookCover);
         setupBookCardActions(book, clonedCard);
     });
     resetDialog();
