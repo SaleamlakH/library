@@ -8,6 +8,7 @@ let myLibrary = [];
 // modify the original.
 let boundSaveChanges = null; 
 
+const filterBtnContainer = document.querySelector('.filter-buttons');
 const booksList = document.querySelector('.books-list');
 const bookCardTemplate = document.querySelector('.book-card.template');
 const addBtn = document.querySelector('.add-book');
@@ -19,6 +20,8 @@ const livePreview = document.querySelector('.form-live-preview');
 const [bookCover]= livePreview.children;
 const [bookTitle, bookAuthor, bookPages] = bookCover.children;
 
+
+filterBtnContainer.addEventListener('click', filterBooks);
 addBtn.addEventListener('click', () => {
     const [hue, saturation] = styleBookCover(bookCover);
     stylePreviewContainer(hue, saturation);
@@ -234,6 +237,29 @@ function writeBookCoverContents(title, author, pages) {
 function resetDialog() {
     form.reset();
     writeBookCoverContents('', '', '');
+}
+
+// --- Filter books based on their read status ---
+function filterBooks(e) {
+    const className = Array.from(e.target.classList);
+
+    myLibrary.forEach(book => {
+        if (className.includes('all')) {
+            booksList.insertBefore(book.bookCard, bookCardTemplate);
+            return;
+        }
+
+        if (className.includes('read')) {
+            if (book.read) booksList.insertBefore(book.bookCard, bookCardTemplate);
+            else book.bookCard.remove();
+            return;
+        }
+
+        if (className.includes('unread')) {
+            if (book.read) book.bookCard.remove();
+            else booksList.insertBefore(book.bookCard, bookCardTemplate);
+        }
+    });
 }
 
 // --- functions for book cover styling ---
