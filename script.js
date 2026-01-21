@@ -101,7 +101,29 @@ ActionButton.prototype.openDialogForEditing = function () {
     form.querySelector('#book-author').value = author;
     form.querySelector('#book-pages').value = pages;
 
+    // Save changes instead of adding it as a new book
+    form.removeEventListener('submit', addBookToLibrary);
+    form.addEventListener('submit', (e) => {
+        saveChanges(e, this.book, this.bookCard)
+    }, {once: true});
     dialog.showModal();
+}
+
+function saveChanges(e, book, bookCard) {
+    const {title, author, pages} = getInputValue();
+
+    book.title = title;
+    book.author = author;
+    book.pages = pages;
+
+    bookCard.querySelector('.book-cover .title').textContent = title;
+    bookCard.querySelector('.book-cover .author').textContent = author;
+    bookCard.querySelector('.book-cover .pages').textContent = pages;
+
+    form.addEventListener('submit', addBookToLibrary);
+    e.preventDefault();
+    dialog.close();
+    resetDialog();
 }
 
 function addBookToLibrary(event) {
