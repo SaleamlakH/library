@@ -59,6 +59,8 @@ Book.prototype.setReadStatus = function() {
     this.read = this.read ? false : true;
 }
 
+// Keep the book object and its card reference when
+// attaching an event listener on each button
 function ActionButton(button, book, action) {    
     this.button = button;
     this.action = action;
@@ -95,6 +97,20 @@ ActionButton.prototype.attachClickEventListener = function() {
         });
     }
 }
+
+function addBookToLibrary(event) {
+    const {title, author, pages} = getInputValue();
+    const newBook = new Book(title, author, pages);
+    const clonedCard = showBook(newBook);
+    
+    setupBookCardActions(newBook, clonedCard);
+    myLibrary.push(newBook);
+    event.preventDefault();
+    resetDialog();
+    dialog.close();
+}
+
+// --- functions for editing an existing book ---
 
 function openDialogForEditing(book, bookCard) {
     const {title, author, pages} = book;
@@ -134,17 +150,7 @@ function saveChanges(e) {
     resetDialog();
 }
 
-function addBookToLibrary(event) {
-    const {title, author, pages} = getInputValue();
-    const newBook = new Book(title, author, pages);
-    const clonedCard = showBook(newBook);
-    
-    setupBookCardActions(newBook, clonedCard);
-    myLibrary.push(newBook);
-    event.preventDefault();
-    resetDialog();
-    dialog.close();
-}
+// --- Helper function for book object adder or editor functions ---
 
 function getInputValue() {
     const formData = Array.from(new FormData(form));
@@ -171,6 +177,8 @@ function setupBookCardActions(book, bookCard) {
         actionBtn.attachClickEventListener();
     };
 };
+
+// --- display contents either on book card or live preview ---
 
 function showBook(book) {
     const cloneTemplate = bookCardTemplate.cloneNode(true);
