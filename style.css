@@ -255,7 +255,7 @@ main {
 dialog:open {
    border: 1px solid hsl(0 0 80);
    border-radius: 10px;
-   position: absolute;
+   position: fixed;
    top: 50%;
    bottom: 50%;
    
