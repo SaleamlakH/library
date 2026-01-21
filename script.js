@@ -16,8 +16,8 @@ const form = document.querySelector('form');
 const cancelBtn = document.querySelector('#cancel-button');
 const inputs = document.querySelectorAll('form input');
 const livePreview = document.querySelector('.form-live-preview');
-const bookCover = livePreview.querySelector('.book-cover');
-const [bookTitle, bookAuthor, bookPages] = livePreview.querySelectorAll('.book-cover > div');
+const [bookCover]= livePreview.children;
+const [bookTitle, bookAuthor, bookPages] = bookCover.children;
 
 addBtn.addEventListener('click', () => dialog.showModal());
 form.addEventListener('submit', addBookToLibrary);
