@@ -260,6 +260,8 @@ dialog:open {
    bottom: 50%;
    
    display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
 }
 
 dialog::backdrop {
