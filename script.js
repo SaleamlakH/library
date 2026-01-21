@@ -92,9 +92,7 @@ function openDialogForEditing(book, bookCard) {
     const {title, author, pages} = book;
 
     // fill template with book content
-    bookTitle.textContent = title;
-    bookAuthor.textContent = author;
-    bookPages.textContent = pages;
+    writeBookCoverContents(title, author, pages);
 
     // fill the form elements with the respective book value
     form.querySelector('#book-title').value = title;
@@ -169,9 +167,7 @@ function showBook(book) {
     const actionBtnsContainer = cloneTemplate.querySelector('.actions');
     
     // Populating the cover before clone
-    bookTitle.textContent = book.title;
-    bookAuthor.textContent = book.author;
-    bookPages.textContent = `${book.pages} pages`;
+    writeBookCoverContents(book.title, book.author, `${book.pages} pages`);
     
     const cloneBookCover = bookCover.cloneNode(true);
     
@@ -199,11 +195,15 @@ function updateTemplateReview(event) {
     }
 }
 
+function writeBookCoverContents(title, author, pages) {
+    bookTitle.textContent = title;
+    bookAuthor.textContent = author;
+    bookPages.textContent = pages
+}
+
 function resetDialog() {
     form.reset();
-    bookTitle.textContent = '';
-    bookAuthor.textContent = '';
-    bookPages.textContent = '';
+    writeBookCoverContents('', '', '');
 }
 
 // add sample books to make UI and feature development easier
