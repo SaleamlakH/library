@@ -24,7 +24,7 @@ form.addEventListener('submit', addBookToLibrary);
 cancelBtn.addEventListener('click', () => {
     form.removeEventListener('submit', boundSaveChanges);
     resetDialog();
-    dialog.close()
+    dialog.close();
 });
 inputs.forEach(input => {
     input.addEventListener('input', updateTemplateReview);
@@ -208,7 +208,7 @@ function updateTemplateReview(event) {
 function writeBookCoverContents(title, author, pages) {
     bookTitle.textContent = title;
     bookAuthor.textContent = author;
-    bookPages.textContent = pages
+    bookPages.textContent = pages;
 }
 
 function resetDialog() {
