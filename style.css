@@ -311,6 +311,7 @@ form button:hover {
 .form-live-preview {
     width: 220px;
     padding: 1.5em;
+    border-radius: 10px;
 
     display: flex;
     align-items: center;
