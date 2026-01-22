@@ -86,7 +86,6 @@ body {
     background-color: var(--buttons-bg-color);
     border: none;
     position: relative;
-    /* overflow: hidden; */
 }
 
 .filter-button.all {
