@@ -243,6 +243,7 @@ function resetDialog() {
 function filterBooks(e) {
     const className = Array.from(e.target.classList);
 
+    styleActiveFilterBtn(e.target);
     myLibrary.forEach(book => {
         if (className.includes('all')) {
             booksList.insertBefore(book.bookCard, bookCardTemplate);
@@ -262,7 +263,7 @@ function filterBooks(e) {
     });
 }
 
-// --- functions for book cover styling ---
+// --- functions for styling ---
 function styleBookCover(bookCover) {
     const hue = Math.floor(Math.random() * 361);
     const saturation = Math.floor(Math.random() * 60);
@@ -275,6 +276,13 @@ function styleBookCover(bookCover) {
 
 function stylePreviewContainer(hue, saturation) {
     livePreview.style.backgroundColor = `hsl(${hue} ${saturation} 85`;
+}
+
+function styleActiveFilterBtn(button) {
+    const filterBtns = Array.from(filterBtnContainer.children);
+    
+    filterBtns.forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
 }
 
 // add sample books to make UI and feature development easier
@@ -290,5 +298,8 @@ function stylePreviewContainer(hue, saturation) {
         styleBookCover(bookCover);
         setupBookCardActions(book, clonedCard);
     });
+
+    const appliedFilterBtn = filterBtnContainer.children[0];
+    styleActiveFilterBtn(appliedFilterBtn);
     resetDialog();
 })();
