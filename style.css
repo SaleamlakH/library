@@ -245,8 +245,21 @@ main {
     height: 1.5rem;
 }
 
+.feather-check-circle .check {
+   visibility: hidden;
+}
+
+.action-book-status.read .full-circle,
+.action-book-status:hover .full-circle {
+    visibility: hidden;
+}
+
+.action-book-status.read .check,
+.action-book-status:hover .feather-check-circle .check {
+   visibility: visible;
+}
+
 .actions .action-book-status {
-    color: transparent;
     margin-right: auto;
 }
 
