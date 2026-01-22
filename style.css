@@ -86,7 +86,7 @@ body {
     background-color: var(--buttons-bg-color);
     border: none;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .filter-button.all {
@@ -97,30 +97,36 @@ body {
     border-radius: 0 10px 10px 0;
 }
 
-.filter-button:hover::after,
-.filter-button:active::after {
+
+/* overlay for hover and active state */
+.filter-button::before,
+.filter-button::after {
     content: '';
     position: absolute;
     top: 0px;
     left: 0px;
+}
+
+.filter-button:hover::after {
     z-index: 1;
     width: 100%;
     height: 100%;
-    padding: 0.5em;
-    background-color: var(--hover-color);
-    border-bottom: 3px solid hsl(0 60 35);
+    border-radius: 10px;
+    background-color: hsl(0 0 20 / 20%);
 }
 
-.filter-button.all:hover::after {
-    content: 'All';
+/* bottom border effect */
+.filter-button:active::before {
+    left: 10%;
+    width: 80%;
+    height: 105%;
+    border-bottom: 2px solid hsl(0 60 35);
 }
 
+/* create a gap between center btn and others */
+.filter-button.read:after,
 .filter-button.read:hover::after {
-    content: 'Read';
-}
-
-.filter-button.unread:hover::after {
-    content: 'Unread';
+    transform: scaleX(0.9);
 }
 
 main {
